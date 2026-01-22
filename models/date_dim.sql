@@ -28,4 +28,3 @@ where STARTED_AT != 'started_at'
 select
 *
 from CTE
---qualify row_number() over (order by started_at) <= 100
