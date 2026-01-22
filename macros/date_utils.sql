@@ -14,3 +14,13 @@
         ELSE 'AUTUMN' 
         END
 {% endmacro %}
+
+
+{% macro day_type(x) %}
+    CASE
+    WHEN DAYOFWEEK(TO_TIMESTAMP({{ x }})) >0 and DAYOFWEEK(TO_TIMESTAMP({{ x }})) <6 
+    THEN 'BUSINESSDAY' 
+    ELSE 'WEEKEND'
+    END
+{% endmacro %}
+
