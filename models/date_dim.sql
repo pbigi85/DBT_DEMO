@@ -13,12 +13,8 @@ select
     ELSE 'WEEKEND'
     END as DAYTYPE,
     MONTH((TO_TIMESTAMP(STARTED_AT))) AS MONTH_STARTED_AT,
-    CASE WHEN MONTH((TO_TIMESTAMP(STARTED_AT))) IN ('12','1','2')THEN 'WINTER'
-        WHEN MONTH((TO_TIMESTAMP(STARTED_AT))) IN ('3','4','5') THEN 'SPRING'
-        WHEN MONTH((TO_TIMESTAMP(STARTED_AT))) IN ('6','7','8') THEN 'SUMMMER'
-        ELSE 'AUTUMN' 
-        END AS SEASON_STARTED_AT,
-    MONTHNAME((TO_TIMESTAMP(STARTED_AT))) AS MONTHNAME_STARTED_AT
+    {{ season('started_at') }} as SEASON_STARTED_AT,
+    {{ function1('started_at') }} as timetype
 from {{ source('demo', 'bike') }}
 where STARTED_AT != 'started_at'
 
