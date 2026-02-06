@@ -11,7 +11,7 @@ select
     {{ day_type('started_at') }} as DAYTPE,
     {{ season('started_at') }} as SEASON_STARTED_AT,
     {{ function1('started_at') }} as timetype
-from {{ source('demo', 'bike') }}
+from {{ ref('stg_bike') }}
 where STARTED_AT != 'started_at'
 
 )
